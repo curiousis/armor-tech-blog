@@ -5,7 +5,7 @@ import { orange } from '@mui/material/colors';
 
 export default function Header() {
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#2C3E50' }}>
+    <AppBar position='static'sx={{ backgroundColor: 'transparent' }}>
       <Toolbar className='flex justify-between py-4 px-3'>
         <Typography variant="h6" style={{color:orange[500]}} component="div">
           ArmorSphere

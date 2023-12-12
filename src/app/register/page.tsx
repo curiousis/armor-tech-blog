@@ -1,17 +1,11 @@
 'use client'
 import React, { useState } from 'react';
-import { TextField, Button, makeStyles } from '@material-ui/core';
+import { TextField, Button,Container } from '@mui/material'
+import { orange } from '@mui/material/colors';
+
+
 
 export default function RegisterPage() {
-  const classes = useStyles();
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,39 +13,39 @@ export default function RegisterPage() {
   };
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <TextField
-        className={classes.input}
-        type="email"
-        name="email"
-        label="Email"
-        placeholder="Email"
-        variant="outlined"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <TextField
-        className={classes.input}
-        type="password"
-        name="password"
-        label="Password"
-        placeholder="Password"
-        variant="outlined"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        type="submit"
-      >
-        Register
-      </Button>
-    </form>
+    <Container className='flex justify-center items-center min-h-screen'>
+        <form className='flex justify-center items-center flex-col w-4/5' onSubmit={handleSubmit}>
+          <TextField
+            className=''
+            type="email"
+            name="email"
+            label="Email"
+            placeholder="Email"
+            variant="outlined"
+            style={{width:'50%',border:'2px solid rgba(255,0,0,.3)',borderRadius:'.5rem'}}
+          />
+          <TextField
+            className=''
+            type="password"
+            name="password"
+            label="Password"
+            placeholder="Password"
+            variant="outlined"
+            style={{width:'50%',border:'2px solid rgba(255,0,0,.3)',borderRadius:'.5rem'}}
+
+          />
+          <Button
+            
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ backgroundColor: orange[500], color: '#2C3E50' }}
+          >
+            Register
+          </Button >
+
+        </form>
+    </Container>
   );
-}
-function useStyles() {
-    throw new Error('Function not implemented.');
 }
 
