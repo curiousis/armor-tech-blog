@@ -1,12 +1,16 @@
 'use client'
 import React,{FormEvent} from 'react'
-import { TextField, Button,Container } from '@mui/material'
+import { TextField, Button } from '@mui/material'
 import { orange } from '@mui/material/colors';
-import argon2  from 'argon2';
+import {  useRouter } from 'next/navigation';
+
 export default function Form() {
+  const router = useRouter();
+
     const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
+       try {
         const response = await fetch(`/api/auth/register`,{
             method:'POST',
             body: JSON.stringify({
@@ -16,10 +20,19 @@ export default function Form() {
             role: 'user',
           })
         });
-        console.log(response);
-        
-      };
-    
+
+
+        if(response.ok){
+          router.push('/dashboard');
+          router.refresh();
+     } else{
+      console.error('Something went wrong');
+     }
+      }catch(error){
+        console.error('An error occured during registration', error);
+      
+    }
+  }
   return (
     <form className='flex justify-center items-center flex-col w-4/5' onSubmit={handleSubmit}>
     <TextField

@@ -21,9 +21,7 @@ export async function POST(request: Request) {
       INSERT INTO users (email, password, role, name)
       VALUES (${user.email}, ${hashedPassword}, ${user.role}, ${user.name})
     `;
-
-    console.log(hashedPassword);
-  } catch (err) {
+  } catch (err:any) {
     console.error(err.errors[0].message); // Log the validation errors
   }
 
