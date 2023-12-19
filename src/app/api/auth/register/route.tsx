@@ -22,8 +22,8 @@ export async function POST(request: Request) {
       VALUES (${user.email}, ${hashedPassword}, ${user.role}, ${user.name})
     `;
   } catch (err:any) {
-    console.error(err.errors[0].message); // Log the validation errors
-    console.log(err);
+    console.error(err.errors[0].message);
+    throw new Error(err.errors.message); 
     
   }
 

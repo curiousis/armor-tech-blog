@@ -31,6 +31,7 @@ const handler =NextAuth({
               const user = response.rows[0]
               const passwordMatch = await argon2.verify(user.password, credentials?.password||'')
               
+              console.log(user);
               
               if(passwordMatch){
                 
