@@ -45,7 +45,7 @@ const handler =NextAuth({
                 throw new Error('Invalid email or password')
               }              
             } catch (error) {
-              console.error('Error during authorization', error.message)
+              console.error('Error during authorization', error)
               
               return null
           }
