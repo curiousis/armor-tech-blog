@@ -1,11 +1,15 @@
 'use client'
-import React,{FormEvent} from 'react'
+import React,{useState,FormEvent} from 'react'
 import { TextField, Button } from '@mui/material'
 import { orange } from '@mui/material/colors';
 import {  useRouter } from 'next/navigation';
 
 export default function Form() {
   const router = useRouter();
+  const [email,setEmail] = React.useState('');
+  const [name,setName] = React.useState('');
+  const [password,setPassword] = React.useState('');
+  const [error,setError] = React.useState('');
 
     const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -23,7 +27,7 @@ export default function Form() {
 
 
         if(response.ok){
-          router.push('/dashboard');
+          router.push('/login');
           router.refresh();
      } else{
       console.error('Something went wrong');
@@ -42,6 +46,7 @@ export default function Form() {
       placeholder="Name"
       variant="outlined"
       style={{width:'50%',border:'2px solid rgba(255,0,0,.3)',borderRadius:'.5rem'}}
+      onChange={(e)=> setName(e.target.value)}
     />
     <TextField
       type="email"
@@ -50,6 +55,7 @@ export default function Form() {
       placeholder="Email"
       variant="outlined"
       style={{width:'50%',border:'2px solid rgba(255,0,0,.3)',borderRadius:'.5rem'}}
+      onChange={(e)=> setEmail(e.target.value)}
     />
     <TextField
       type="password"
@@ -58,10 +64,9 @@ export default function Form() {
       placeholder="Password"
       variant="outlined"
       style={{width:'50%',border:'2px solid rgba(255,0,0,.3)',borderRadius:'.5rem'}}
-
+      onChange={(e)=>setPassword(e.target.value)}
     />
-    <Button
-      
+    <Button      
       variant="contained"
       color="primary"
       type="submit"
@@ -69,7 +74,6 @@ export default function Form() {
     >
       Register
     </Button >
-
   </form>
   )
 }

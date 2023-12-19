@@ -19,9 +19,11 @@ const handler =NextAuth({
             },
 
             async authorize(credentials, req) {
-              const schema = z.object({
-                email: z.string().email(),
-                password: z.string().min(6),
+              try{
+
+                const schema = z.object({
+                  email: z.string().email(),
+                  password: z.string().min(6),
               });
                
               const response = await sql`
@@ -31,18 +33,24 @@ const handler =NextAuth({
               
               
               if(passwordMatch){
-
+                
                 return {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    role: user.role
+                  id: user.id,
+                  name: user.name,
+                  email: user.email,
+                  role: user.role
                 }
-              
+                
+              } else {
+                throw new Error('Invalid email or password')
               }              
+            } catch (error) {
+              console.error('Error during authorization', error.message)
+              
               return null
-            }
+          }
         }
+          }
         )
              
     ]

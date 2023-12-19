@@ -23,6 +23,8 @@ export async function POST(request: Request) {
     `;
   } catch (err:any) {
     console.error(err.errors[0].message); // Log the validation errors
+    console.log(err);
+    
   }
 
   return NextResponse.json({ message: 'success' });
