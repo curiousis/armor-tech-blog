@@ -1,19 +1,19 @@
 import { getServerSession } from "next-auth"
 import Logout from '@/app/logout';
 
-export default async function Dashboard(){
+export default async function Dashboard() {
     const session = await getServerSession()
-    
-    return(
+
+    return (
         <>
-        <nav>
-        {
-            !!session && 
-            <Logout/>
-        }
-      </nav>
-      <h1>Welcome Home, {session?.user?.name}</h1>
-      </>
+            <nav>
+                {
+                    !!session &&
+                    <Logout />
+                }
+            </nav>
+            <h1>Welcome Home, {session?.user?.name}</h1>
+        </>
     )
 
 }

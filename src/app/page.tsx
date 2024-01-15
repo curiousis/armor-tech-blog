@@ -1,12 +1,11 @@
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
 
+'use client'
+import { SessionProvider } from 'next-auth/react'
 
-export default function Home() {
+export default function Home({ Component, pageProps }) {
   return (
-    <main className="flex min-h-screen flex-col items-center">
-      <Header/>
-      <Hero/>
-    </main>
+    <SessionProvider>
+      <Component {...pageProps} />
+    </SessionProvider>
   )
 }
